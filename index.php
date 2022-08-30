@@ -1,26 +1,24 @@
 <?php include 'header.php'; ?>
-<?php $data = json_decode(file_get_contents('https://pokeapi.co/api/v2/pokemon/'), true); ?>
 <div class="container-fluid">
     <div class="row" id="rowTable">
-        <div class="col-sm-12 table-responsive">
-            <table class="table table-hover">
-                <thead class="table-dark">
-                    <tr>
-                        <th scope="col">Pok&eacute;mon</th>
-                        <th scope="col">Imagen</th>
-                        <th scope="col">Habilidad</th>
-                    </tr>
-                </thead>
-                <?php foreach ($data as $item) { ?>
-                    <tbody>
-                        <tr>
-                            <td><?php echo $item['name']; ?></td>
-                            <td><?php echo $item['url']; ?></td>
-                        </tr>
-                    </tbody>
-                <?php } ?>
-            </table>
-        </div>
+        <?php foreach ($data['results'] as $item) { ?>
+            <div class="col-sm-4">
+                <div class="card border-0">
+                    <div class="card-title">
+                        <img id="cardImgTitle" src="" alt="">
+                    </div>
+                    <div class="card-body">
+                        <div class="row mb-3">
+                            <div class="col-sm-1"></div>
+                            <label class="col-sm-3" for="">Pok&eacute;mon:</label>
+                            <label class="col-sm-7" for=""><?php echo $item['name']; ?></label>
+                            <div class="col-sm-1"></div>
+                        </div>
+                    </div>
+                </div>
+                <br>
+            </div>
+        <?php } ?>
     </div>
 </div>
 <?php include 'footer.php' ?>

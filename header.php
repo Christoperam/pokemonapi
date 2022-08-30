@@ -18,5 +18,21 @@
         <a id="navbar-brand" class="navbar-brand">Pok&eacute;mon API</a>
     </div>
 </nav>
-
+<?php 
+$poke = curl_init();
+$url = "https://pokeapi.co/api/v2/pokemon?offset=0&limit=10";
+curl_setopt($poke, CURLOPT_URL, $url);
+curl_setopt($poke, CURLOPT_RETURNTRANSFER, TRUE);
+$respuesta = curl_exec($poke);
+if($ex = curl_error($poke))
+{
+    echo var_dump($ex);
+}
+else
+{
+    $data = json_decode($respuesta, true);
+    return $data;
+}
+curl_close($poke);
+?>
 <body>
